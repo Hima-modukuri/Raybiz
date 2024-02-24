@@ -21,7 +21,7 @@ resource "azurerm_subnet" "subnet" {
   
 }
 
-resource "azurerm_public_ip" "" {
+resource "azurerm_public_ip" "publicip" {
   name = "public_ip"
   resource_group_name =  azurerm_resource_group.aks.name
   location = azurerm_resource_group.aks.location
@@ -49,7 +49,7 @@ resource "azurerm_network_interface" "main" {
 
   ip_configuration {
     name                          = "testconfiguration1"
-    subnet_id                     = azurerm_subnet.internal.id
+    subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "Dynamic"
 }
 }
